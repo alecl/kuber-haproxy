@@ -9,7 +9,7 @@ defaults
 
 frontend http-in
     bind *:80
-    #default_backend default
+    default_backend default
 
     acl acl_blog path /blog
     acl acl_blog_beg path_beg /blog/
@@ -23,8 +23,8 @@ frontend http-in
     use_backend nodejs if acl_new
 
 
-#backend default
-#    server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80" cookie nginx check
+backend default
+    server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80" cookie nginx check
 
 backend wordpress
     server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
