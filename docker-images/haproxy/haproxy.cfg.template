@@ -1,6 +1,7 @@
 global
 defaults
     mode http
+    retries 10
     timeout connect 5000ms
     timeout client 50000ms
     timeout server 50000ms
