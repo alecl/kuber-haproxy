@@ -24,11 +24,11 @@ frontend http-in
 
 
 backend default
-    server %NGINX_ENDPOINT% 10.0.10.1:80 cookie nginx check
+    server %NGINX_ENDPOINT% 10.0.119.255:80 cookie nginx check
     #server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80 cookie nginx check
 
 backend wordpress
-    #server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
+    server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
 
 backend nodejs
-    #server %NODEJS_ENDPOINT% %NODEJS_ENDPOINT%:8080 cookie nodejs check
+    server %NODEJS_ENDPOINT% %NODEJS_ENDPOINT%:8080 cookie nodejs check
