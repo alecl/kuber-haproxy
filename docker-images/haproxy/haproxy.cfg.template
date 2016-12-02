@@ -1,0 +1,31 @@
+global
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend default
+
+    acl acl_blog path /blog
+    acl acl_blog_beg path_beg /blog/
+    acl acl_ex path_beg /ex/
+    acl acl_ex path /ex
+    acl acl_new path_beg /new/
+    acl acl_new path /new
+    use_backend wordpress if acl_blog
+    use_backend wordpress if acl_blog_beg
+    use_backend nodejs if acl_ex
+    use_backend nodejs if acl_new
+
+
+backend default
+    server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80" cookie nginx check
+
+backend wordpress
+    server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
+
+backend nodejs
+    server %NODEJS_ENDPOINT% %NODEJS_ENDPOINT%:8080 cookie nodejs check
