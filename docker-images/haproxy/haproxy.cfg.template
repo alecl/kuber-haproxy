@@ -1,7 +1,7 @@
 global
 defaults
     mode http
-    retries 10
+
     timeout connect 5000ms
     timeout client 50000ms
     timeout server 50000ms
@@ -24,12 +24,10 @@ frontend http-in
 
 
 backend default
-    server %NGINX_ENDPOINT% demo-nginx-ser:80 check
-    #server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80 cookie nginx check
+    server %NGINX_ENDPOINT% %NGINX_ENDPOINT%:80 cookie nginx check
 
 backend wordpress
-    server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%-ser:80 check
-    #server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
+    server %WORDPRESS_ENDPOINT% %WORDPRESS_ENDPOINT%:80 cookie wordpress check
 
 backend nodejs
     server %NODEJS_ENDPOINT% %NODEJS_ENDPOINT%:8080 cookie nodejs check
